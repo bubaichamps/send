@@ -11,12 +11,18 @@ const regularJSOptions = {
   plugins: ['yo-yoify']
 };
 
+const entry = {
+  vendor: ['babel-polyfill', 'fluent'],
+  app: ['./app/main.js'],
+  style: ['./app/main.css']
+};
+
+if (IS_DEV) {
+  entry.tests = ['./test/frontend/index.js'];
+}
+
 module.exports = {
-  entry: {
-    vendor: ['babel-polyfill', 'fluent'],
-    app: ['./app/main.js'],
-    style: ['./app/main.css']
-  },
+  entry,
   output: {
     filename: '[name].[chunkhash:8].js',
     path: path.resolve(__dirname, 'dist'),
